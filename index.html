@@ -2,16 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>LayerLive | Multiplayer Design Studio</title>
-  <meta name="description" content="LayerLive is a realtime multiplayer design studio concept: collaborative raster editing, live cursors, rooms, layers, comments, and pro creative workflows in the browser." />
+  <meta name="description" content="LayerLive is a realtime multiplayer design studio: collaborative raster editing, live cursors, rooms, layers, comments, and pro creative workflows in the browser." />
+  <meta name="theme-color" content="#070812" />
+  <meta property="og:title" content="LayerLive | Multiplayer Design Studio" />
+  <meta property="og:description" content="A browser-first collaborative canvas where designers can draw, edit, comment, version, and hand off work in the same shared room." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="./og-preview.png" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='url(%23g)'/><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0%' stop-color='%23ff3df2'/><stop offset='100%' stop-color='%2333f7ff'/></linearGradient></defs><text y='72' x='18' font-size='60' font-weight='900' fill='%23070812' font-family='system-ui'>LL</text></svg>" />
   <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
-  <div class="grain"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <a class="skip-link" href="#demo">Skip to demo</a>
+
   <header class="site-header">
     <a class="brand" href="#top" aria-label="LayerLive home">
-      <span class="brand-mark">LL</span>
+      <span class="brand-mark" aria-hidden="true">LL</span>
       <span class="brand-copy">
         <strong>LayerLive</strong>
         <small>Multiplayer Design Studio</small>
@@ -27,10 +35,10 @@
   </header>
 
   <main id="top">
-    <section class="hero section-grid">
+    <section class="hero section-grid" aria-labelledby="hero-title">
       <div class="hero-copy">
         <p class="eyebrow">Built from the Ice Scribble idea, upgraded for serious creators</p>
-        <h1>Multiplayer Photoshop for teams that actually design together.</h1>
+        <h1 id="hero-title">Multiplayer Photoshop for teams that actually design together.</h1>
         <p class="lead">A browser-first collaborative canvas where designers can draw, edit, comment, version, and hand off work in the same shared room.</p>
         <div class="hero-actions">
           <a class="button primary" href="#demo">Open the prototype</a>
@@ -45,7 +53,7 @@
         </div>
       </div>
       <aside class="hero-card" aria-label="Positioning summary">
-        <div class="status-row"><span class="pulse"></span> Room sync concept online</div>
+        <div class="status-row"><span class="pulse" aria-hidden="true"></span> Room sync concept online</div>
         <h2>The gap</h2>
         <p>Figma owns collaborative UI. Canva owns templates. Miro owns whiteboards. Photopea owns browser Photoshop. Nobody clearly owns real-time collaborative raster editing for creators.</p>
         <ul>
@@ -63,30 +71,30 @@
         <p>This first version is client-side only so it can ship on GitHub Pages. The teammate cursors and room feed are simulated here. Phase two wires this to real rooms with Yjs plus Supabase, Firebase, or Ably.</p>
       </div>
 
-      <div class="app-window">
+      <div class="app-window" role="application" aria-label="Collaborative drawing application">
         <div class="window-topbar">
-          <div class="traffic"><i></i><i></i><i></i></div>
-          <div class="room-pill">room: pitch-board-001</div>
-          <button class="invite-button" type="button" id="copyInvite">Copy invite</button>
+          <div class="traffic" aria-hidden="true"><i></i><i></i><i></i></div>
+          <div class="room-pill" aria-label="Current room">room: pitch-board-001</div>
+          <button class="invite-button" type="button" id="copyInvite" aria-label="Copy room invite link">Copy invite</button>
         </div>
 
         <div class="workspace">
           <aside class="tool-panel" aria-label="Drawing tools">
             <h3>Tools</h3>
-            <button class="tool active" type="button" data-tool="brush">Brush</button>
-            <button class="tool" type="button" data-tool="eraser">Eraser</button>
-            <label class="control-label">Color <input id="colorPicker" type="color" value="#ff3df2" /></label>
-            <label class="control-label">Size <input id="brushSize" type="range" min="2" max="42" value="10" /></label>
-            <button class="tool secondary" type="button" id="undoBtn">Undo</button>
-            <button class="tool secondary" type="button" id="clearBtn">Clear</button>
-            <button class="tool secondary" type="button" id="exportBtn">Export PNG</button>
+            <button class="tool active" type="button" data-tool="brush" aria-pressed="true">Brush</button>
+            <button class="tool" type="button" data-tool="eraser" aria-pressed="false">Eraser</button>
+            <label class="control-label">Color <input id="colorPicker" type="color" value="#ff3df2" aria-label="Brush color" /></label>
+            <label class="control-label">Size <input id="brushSize" type="range" min="2" max="42" value="10" aria-label="Brush size" /></label>
+            <button class="tool secondary" type="button" id="undoBtn" aria-label="Undo last stroke">Undo</button>
+            <button class="tool secondary" type="button" id="clearBtn" aria-label="Clear canvas">Clear</button>
+            <button class="tool secondary" type="button" id="exportBtn" aria-label="Export canvas as PNG">Export PNG</button>
           </aside>
 
           <section class="canvas-stage" aria-label="Collaborative design canvas">
-            <canvas id="drawCanvas" width="1280" height="820"></canvas>
-            <div class="cursor teammate one"><span></span><b>Ari</b></div>
-            <div class="cursor teammate two"><span></span><b>Mika</b></div>
-            <div class="cursor teammate three"><span></span><b>Vance</b></div>
+            <canvas id="drawCanvas" aria-label="Drawing canvas - draw here with mouse or touch"></canvas>
+            <div class="cursor teammate one" aria-hidden="true"><span></span><b>Ari</b></div>
+            <div class="cursor teammate two" aria-hidden="true"><span></span><b>Mika</b></div>
+            <div class="cursor teammate three" aria-hidden="true"><span></span><b>Vance</b></div>
           </section>
 
           <aside class="right-panel" aria-label="Project information">
@@ -115,8 +123,8 @@
                 <p><b>Mika</b> locked the background layer.</p>
                 <p><b>Vance</b> started sketching the hero concept.</p>
               </div>
-              <form id="chatForm" class="chat-form">
-                <input id="chatInput" type="text" placeholder="Write a note..." autocomplete="off" />
+              <form id="chatForm" class="chat-form" aria-label="Send a room message">
+                <input id="chatInput" type="text" placeholder="Write a note..." autocomplete="off" aria-label="Message text" />
                 <button type="submit">Send</button>
               </form>
             </div>
@@ -130,14 +138,14 @@
         <p class="eyebrow">Competitor map</p>
         <h2 id="market-title">The market is crowded, but the exact lane is still open.</h2>
       </div>
-      <div class="table-wrap">
+      <div class="table-wrap" tabindex="0" role="region" aria-label="Competitor comparison table, scrollable">
         <table>
           <thead>
             <tr>
-              <th>Competitor</th>
-              <th>What they own</th>
-              <th>Weakness we attack</th>
-              <th>Our better angle</th>
+              <th scope="col">Competitor</th>
+              <th scope="col">What they own</th>
+              <th scope="col">Weakness we attack</th>
+              <th scope="col">Our better angle</th>
             </tr>
           </thead>
           <tbody>
@@ -172,7 +180,7 @@
               <td>Same browser accessibility, but collaboration is the product core</td>
             </tr>
             <tr>
-              <td>Aggie.io / Magma-style drawing apps</td>
+              <td>Aggie.io / Magma</td>
               <td>Collaborative drawing and sketch sessions</td>
               <td>Often art/sketch-focused, not agency/team workflow-focused</td>
               <td>Design ops: versions, approvals, client rooms, project handoff, team permissions</td>
@@ -182,29 +190,29 @@
       </div>
     </section>
 
-    <section id="edge" class="section-grid feature-section">
+    <section id="edge" class="section-grid feature-section" aria-labelledby="edge-title">
       <div class="section-heading compact">
         <p class="eyebrow">How we win</p>
-        <h2>Do not fight Figma head-on. Own collaborative image production.</h2>
+        <h2 id="edge-title">Do not fight Figma head-on. Own collaborative image production.</h2>
       </div>
       <div class="feature-grid">
         <article>
-          <span>01</span>
+          <span class="feature-num" aria-hidden="true">01</span>
           <h3>Raster-first multiplayer</h3>
           <p>Brushes, masks, image adjustments, references, layers, and exports before UI wireframes.</p>
         </article>
         <article>
-          <span>02</span>
+          <span class="feature-num" aria-hidden="true">02</span>
           <h3>Creator rooms</h3>
           <p>Fast shared workspaces for merch drops, thumbnails, album art, stream overlays, and social campaigns.</p>
         </article>
         <article>
-          <span>03</span>
+          <span class="feature-num" aria-hidden="true">03</span>
           <h3>Tool bridge later</h3>
           <p>Start as web. Later add Photoshop/Procreate companion sync, asset import, and review rooms.</p>
         </article>
         <article>
-          <span>04</span>
+          <span class="feature-num" aria-hidden="true">04</span>
           <h3>Client-friendly handoff</h3>
           <p>Version history, comments, approvals, watermark previews, and export packages for agencies.</p>
         </article>
@@ -218,17 +226,17 @@
       </div>
       <div class="roadmap-grid">
         <article>
-          <strong>Phase 1</strong>
+          <strong class="phase-label">Phase 1</strong>
           <h3>Static GitHub Pages prototype</h3>
           <p>Landing page, product story, competitor matrix, interactive local canvas, waitlist CTA.</p>
         </article>
         <article>
-          <strong>Phase 2</strong>
+          <strong class="phase-label">Phase 2</strong>
           <h3>Realtime rooms</h3>
           <p>Yjs document sync, WebSocket provider, presence cursors, shared chat, persistent room state.</p>
         </article>
         <article>
-          <strong>Phase 3</strong>
+          <strong class="phase-label">Phase 3</strong>
           <h3>Design workflow moat</h3>
           <p>Layers, comments, version history, import/export, client review links, paid team workspaces.</p>
         </article>
@@ -241,6 +249,6 @@
     <a href="#top">Back to top</a>
   </footer>
 
-  <script src="./app.js"></script>
+  <script src="./app.js" defer></script>
 </body>
 </html>
