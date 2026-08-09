@@ -4,13 +4,19 @@ Static-first website prototype for a realtime collaborative design product, insp
 
 ## What this version includes
 
-- Landing page for the product concept
-- Interactive browser drawing canvas
+- Landing page with product story and positioning
+- Interactive browser drawing canvas with HiDPI support
 - Simulated teammate cursors and room presence
 - Tool palette: brush, eraser, color, size, undo, clear, PNG export
+- Keyboard shortcuts: B (brush), E (eraser), Ctrl/Cmd+Z (undo)
 - Team/chat/layers UI mock
 - Competitor positioning matrix
 - Roadmap for going from static prototype to realtime MVP
+- Skip-to-content link, aria-labels, focus-visible, and reduced-motion support
+- Open Graph meta tags for social sharing
+- SVG favicon
+- Mobile responsive with touch support
+- Print styles
 
 ## Why this can run on GitHub Pages
 
@@ -19,25 +25,16 @@ This version is plain HTML, CSS, and JavaScript. There is no build step and no s
 ## Local preview
 
 ```bash
+cd /Users/Vancito/Documents/collab-canvas-mvp
 python3 -m http.server 4173
 ```
 
-Then open:
+Then open: http://127.0.0.1:4173/
 
-```text
-http://127.0.0.1:4173/
-```
+## Live deployment
 
-## GitHub Pages deployment
-
-1. Create a public GitHub repo.
-2. Push these files to the repo root.
-3. In GitHub: Settings → Pages → Deploy from branch → `main` → `/ (root)`.
-4. Live URL will be:
-
-```text
-https://YOUR_GITHUB_USERNAME.github.io/REPO_NAME/
-```
+- **GitHub Pages:** https://devouryourenemies.github.io/layerlive-prototype/
+- **Source:** https://github.com/devouryourenemies/layerlive-prototype
 
 ## Realtime roadmap
 
