@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LayerLive | Multiplayer Design Studio</title>
+  <meta name="description" content="LayerLive is a realtime multiplayer design studio concept: collaborative raster editing, live cursors, rooms, layers, comments, and pro creative workflows in the browser." />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="grain"></div>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="LayerLive home">
+      <span class="brand-mark">LL</span>
+      <span class="brand-copy">
+        <strong>LayerLive</strong>
+        <small>Multiplayer Design Studio</small>
+      </span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="#demo">Demo</a>
+      <a href="#market">Market</a>
+      <a href="#edge">Edge</a>
+      <a href="#roadmap">Roadmap</a>
+    </nav>
+    <a class="header-cta" href="#demo">Try canvas</a>
+  </header>
+
+  <main id="top">
+    <section class="hero section-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Built from the Ice Scribble idea, upgraded for serious creators</p>
+        <h1>Multiplayer Photoshop for teams that actually design together.</h1>
+        <p class="lead">A browser-first collaborative canvas where designers can draw, edit, comment, version, and hand off work in the same shared room.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#demo">Open the prototype</a>
+          <a class="button ghost" href="#market">See competitors</a>
+        </div>
+        <div class="hero-proof" aria-label="Product highlights">
+          <span>Live cursors</span>
+          <span>Layers</span>
+          <span>Chat</span>
+          <span>Raster-first</span>
+          <span>GitHub Pages ready</span>
+        </div>
+      </div>
+      <aside class="hero-card" aria-label="Positioning summary">
+        <div class="status-row"><span class="pulse"></span> Room sync concept online</div>
+        <h2>The gap</h2>
+        <p>Figma owns collaborative UI. Canva owns templates. Miro owns whiteboards. Photopea owns browser Photoshop. Nobody clearly owns real-time collaborative raster editing for creators.</p>
+        <ul>
+          <li>Design rooms, not isolated files</li>
+          <li>Pro tools, not whiteboard doodles</li>
+          <li>Exportable work, not just brainstorming</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section id="demo" class="studio-shell" aria-labelledby="demo-title">
+      <div class="section-heading">
+        <p class="eyebrow">Prototype 001</p>
+        <h2 id="demo-title">Static website demo with a real drawing canvas</h2>
+        <p>This first version is client-side only so it can ship on GitHub Pages. The teammate cursors and room feed are simulated here. Phase two wires this to real rooms with Yjs plus Supabase, Firebase, or Ably.</p>
+      </div>
+
+      <div class="app-window">
+        <div class="window-topbar">
+          <div class="traffic"><i></i><i></i><i></i></div>
+          <div class="room-pill">room: pitch-board-001</div>
+          <button class="invite-button" type="button" id="copyInvite">Copy invite</button>
+        </div>
+
+        <div class="workspace">
+          <aside class="tool-panel" aria-label="Drawing tools">
+            <h3>Tools</h3>
+            <button class="tool active" type="button" data-tool="brush">Brush</button>
+            <button class="tool" type="button" data-tool="eraser">Eraser</button>
+            <label class="control-label">Color <input id="colorPicker" type="color" value="#ff3df2" /></label>
+            <label class="control-label">Size <input id="brushSize" type="range" min="2" max="42" value="10" /></label>
+            <button class="tool secondary" type="button" id="undoBtn">Undo</button>
+            <button class="tool secondary" type="button" id="clearBtn">Clear</button>
+            <button class="tool secondary" type="button" id="exportBtn">Export PNG</button>
+          </aside>
+
+          <section class="canvas-stage" aria-label="Collaborative design canvas">
+            <canvas id="drawCanvas" width="1280" height="820"></canvas>
+            <div class="cursor teammate one"><span></span><b>Ari</b></div>
+            <div class="cursor teammate two"><span></span><b>Mika</b></div>
+            <div class="cursor teammate three"><span></span><b>Vance</b></div>
+          </section>
+
+          <aside class="right-panel" aria-label="Project information">
+            <div class="panel-card">
+              <h3>Live team</h3>
+              <div class="avatars">
+                <span style="--c:#ff3df2">A</span>
+                <span style="--c:#33f7ff">M</span>
+                <span style="--c:#b8ff4d">V</span>
+                <span style="--c:#ffd36e">+</span>
+              </div>
+            </div>
+            <div class="panel-card">
+              <h3>Layers</h3>
+              <ol class="layers">
+                <li><span></span> Comments</li>
+                <li><span></span> Paint Layer</li>
+                <li><span></span> Reference Board</li>
+                <li><span></span> Background</li>
+              </ol>
+            </div>
+            <div class="panel-card chat-card">
+              <h3>Room feed</h3>
+              <div class="chat-log" id="chatLog">
+                <p><b>Ari</b> dropped a reference.</p>
+                <p><b>Mika</b> locked the background layer.</p>
+                <p><b>Vance</b> started sketching the hero concept.</p>
+              </div>
+              <form id="chatForm" class="chat-form">
+                <input id="chatInput" type="text" placeholder="Write a note..." autocomplete="off" />
+                <button type="submit">Send</button>
+              </form>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="market" class="section-block" aria-labelledby="market-title">
+      <div class="section-heading compact">
+        <p class="eyebrow">Competitor map</p>
+        <h2 id="market-title">The market is crowded, but the exact lane is still open.</h2>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Competitor</th>
+              <th>What they own</th>
+              <th>Weakness we attack</th>
+              <th>Our better angle</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Figma / FigJam</td>
+              <td>Realtime UI, product design, whiteboarding</td>
+              <td>Vector/UI-first, not Photoshop-style raster painting</td>
+              <td>Raster-first creative rooms with layers, brushes, image edits, PSD-style workflows</td>
+            </tr>
+            <tr>
+              <td>Canva</td>
+              <td>Template design, simple team collaboration</td>
+              <td>Great for non-designers, weaker for pro editing control</td>
+              <td>Creator/pro mode, custom brushes, asset stacks, speed-focused art direction</td>
+            </tr>
+            <tr>
+              <td>Miro</td>
+              <td>Whiteboards, workshops, planning boards</td>
+              <td>Not built for finished visual production</td>
+              <td>Canvas collaboration that ends in exportable production assets</td>
+            </tr>
+            <tr>
+              <td>Adobe Creative Cloud</td>
+              <td>Industry-standard creative tools</td>
+              <td>Collaboration is file/comment/review-heavy, less room-native</td>
+              <td>Lightweight browser rooms that can later plug into Adobe workflows</td>
+            </tr>
+            <tr>
+              <td>Photopea</td>
+              <td>Browser Photoshop clone</td>
+              <td>Powerful editor, not known as multiplayer-first</td>
+              <td>Same browser accessibility, but collaboration is the product core</td>
+            </tr>
+            <tr>
+              <td>Aggie.io / Magma-style drawing apps</td>
+              <td>Collaborative drawing and sketch sessions</td>
+              <td>Often art/sketch-focused, not agency/team workflow-focused</td>
+              <td>Design ops: versions, approvals, client rooms, project handoff, team permissions</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="edge" class="section-grid feature-section">
+      <div class="section-heading compact">
+        <p class="eyebrow">How we win</p>
+        <h2>Do not fight Figma head-on. Own collaborative image production.</h2>
+      </div>
+      <div class="feature-grid">
+        <article>
+          <span>01</span>
+          <h3>Raster-first multiplayer</h3>
+          <p>Brushes, masks, image adjustments, references, layers, and exports before UI wireframes.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>Creator rooms</h3>
+          <p>Fast shared workspaces for merch drops, thumbnails, album art, stream overlays, and social campaigns.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>Tool bridge later</h3>
+          <p>Start as web. Later add Photoshop/Procreate companion sync, asset import, and review rooms.</p>
+        </article>
+        <article>
+          <span>04</span>
+          <h3>Client-friendly handoff</h3>
+          <p>Version history, comments, approvals, watermark previews, and export packages for agencies.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="roadmap" class="section-block roadmap" aria-labelledby="roadmap-title">
+      <div class="section-heading compact">
+        <p class="eyebrow">Build path</p>
+        <h2 id="roadmap-title">Ship the website first, validate demand, then add realtime infrastructure.</h2>
+      </div>
+      <div class="roadmap-grid">
+        <article>
+          <strong>Phase 1</strong>
+          <h3>Static GitHub Pages prototype</h3>
+          <p>Landing page, product story, competitor matrix, interactive local canvas, waitlist CTA.</p>
+        </article>
+        <article>
+          <strong>Phase 2</strong>
+          <h3>Realtime rooms</h3>
+          <p>Yjs document sync, WebSocket provider, presence cursors, shared chat, persistent room state.</p>
+        </article>
+        <article>
+          <strong>Phase 3</strong>
+          <h3>Design workflow moat</h3>
+          <p>Layers, comments, version history, import/export, client review links, paid team workspaces.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>LayerLive prototype. Static-first, realtime-ready.</p>
+    <a href="#top">Back to top</a>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>
